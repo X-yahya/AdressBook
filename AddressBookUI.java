@@ -109,8 +109,7 @@ public class AddressBookUI {
         String nameToUpdate = JOptionPane.showInputDialog("Enter name to update:");
         for (Contact contact : addressBook.getContacts()) {
             if (contact.getName().equalsIgnoreCase(nameToUpdate)) {
-                // Similar to the addContact method, update contact details
-                // ...
+              
 
                 updateDisplay();
                 return;
