@@ -1,12 +1,17 @@
 ![Alt text](x-1.png)
-**Address Book Java Application**
+**Java Address Book**
+This Java address book application is a demonstration of object-oriented programming principles. Here's a brief overview:
 
-A Java address book application.The project includes separate classes for contacts and the address book.
+**Contact Class**
+This class represents a contact and holds attributes such as name, phone number, and email.
 
-**Features**
-Add Contacts: Easily add new contacts to the address book.
-Search Contacts: Search for contacts by name.
-Update Contacts: Update existing contact details.
-Delete Contacts: Remove contacts from the address book.
+**AddressBook Class**
+The AddressBook class manages contacts using an ArrayList to maintain a list of contacts.
 
+**AddressBookUI Class**
+The user interface is built using Swing. It allows users to:
 
+*Add Contact*: Add new contacts.
+*Search Contact*: Find contacts by name.
+*Delete Contact*: Remove contacts.
+*Update Contact*: Modify contact details.
