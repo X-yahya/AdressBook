@@ -1,5 +1,3 @@
-// AddressBookUI.java
-// AddressBookUI.java
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,17 +11,12 @@ public class AddressBookUI {
     public AddressBookUI() {
         frame = new JFrame("Address Book");
         addressBook = new AddressBook();
-
-        // Create components
         JButton addButton = new JButton("Add Contact");
         JButton searchButton = new JButton("Search");
         JButton deleteButton = new JButton("Delete");
         JButton updateButton = new JButton("Update");
-
         displayArea = new JTextArea();
-        displayArea.setEditable(false);
-
-        // Add action listeners
+        displayArea.setEditable(false) ; 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,7 +45,7 @@ public class AddressBookUI {
             }
         });
 
-        // Create panels
+      
         JPanel buttonPanel = new JPanel(new GridLayout(1, 4, 10, 10));
         buttonPanel.add(addButton);
         buttonPanel.add(searchButton);
@@ -63,7 +56,7 @@ public class AddressBookUI {
         mainPanel.add(buttonPanel, BorderLayout.NORTH);
         mainPanel.add(new JScrollPane(displayArea), BorderLayout.CENTER);
 
-        // Set up the frame
+      
         frame.getContentPane().add(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 300);
@@ -106,16 +99,34 @@ public class AddressBookUI {
     }
 
     private void updateContact() {
-        String nameToUpdate = JOptionPane.showInputDialog("Enter name to update:");
-        for (Contact contact : addressBook.getContacts()) {
-            if (contact.getName().equalsIgnoreCase(nameToUpdate)) {
-              
-
+    String nameToUpdate = JOptionPane.showInputDialog("Enter name to update:");
+    for (Contact contact : addressBook.getContacts()) {
+        if (contact.getName().equalsIgnoreCase(nameToUpdate)) {
+            String option = JOptionPane.showInputDialog("Choose what to update (number/email):");
+            if (option != null && !option.isEmpty()) {
+                option = option.toLowerCase();
+                switch (option) {
+                    case "number":
+                        String newPhoneNumber = JOptionPane.showInputDialog("Enter new phone number:");
+                        contact.setPhoneNumber(newPhoneNumber);
+                        break;
+                    case "email":
+                        String newEmail = JOptionPane.showInputDialog("Enter new email:");
+                        contact.setEmail(newEmail);
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Invalid option. Choose 'number' or 'email'.");
+                        return;
+                }
                 updateDisplay();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid option. Choose 'number' or 'email'.");
                 return;
             }
         }
-        JOptionPane.showMessageDialog(null, "Contact not found.");
+    }
+    JOptionPane.showMessageDialog(null, "Contact not found.");
     }
 
     private void updateDisplay() {
